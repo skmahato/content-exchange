@@ -3,8 +3,8 @@ class Api::PostsController < Api::ApiController
   def index
     posts = Topic.find(params[:id]).posts
 
-     if posts
-      render_success(:created, posts, include: [:topics])
+    if posts
+      render_success(:ok, posts, include: [:topics])
     else
       render_error(:not_found)
     end
@@ -13,9 +13,7 @@ class Api::PostsController < Api::ApiController
   def create
     topics = Topic.where(id: params[:post][:topic_id])
     post = Post.new(post_params)
-    binding.pry
     post.images.attach(params[:post][:images])
-
 
     if post.save
       topics.each { |t| t.posts << post }
