@@ -5,5 +5,5 @@ class Post < ApplicationRecord
   has_many :topics, through: :post_topics
   has_many_attached :images
 
-  validates :context, presence: true, uniqueness: { case_sensitive: false }
+  validates :context, presence: true
 end

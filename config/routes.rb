@@ -3,5 +3,8 @@ Rails.application.routes.draw do
     post "/login",             to: "sessions#create"
     post "/signup",            to: "users#create"
     get "/current_user",       to: "users#authenticate_user"
+
+    resources :posts
+    resources :title
   end
 end
