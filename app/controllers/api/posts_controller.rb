@@ -6,7 +6,7 @@ class Api::PostsController < Api::ApiController
 
     if post.save
       topics.each { |t| t.posts << post }
-      render_success(:created, post, includes: [:topics], meta: { message: "Post created successfully..." })
+      render_success(:created, post, include: [:topics], meta: { message: "Post created successfully..." })
     else
       render_error(:unprocessable_entity, post.errors)
     end
