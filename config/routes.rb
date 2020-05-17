@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     get "/current_user",       to: "users#authenticate_user"
 
     resources :posts
-    resources :title
+    resources :topics
   end
 end
