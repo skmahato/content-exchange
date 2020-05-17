@@ -11,7 +11,7 @@ class Api::SubscriptionsController < Api::ApiController
   end
 
   def create
-    subscription = currentUser.subscriptions.new(subscription_params)
+    subscription = current_user.subscriptions.new(subscription_params)
 
     if subscription.save
       render_success(:created, subscription, include: [:topics], meta: { message: "Subscription created successfully..." })
@@ -21,7 +21,7 @@ class Api::SubscriptionsController < Api::ApiController
   end
 
   def destroy
-    subscription = currentUser.subscriptions.find(params[:id])
+    subscription = current_user.subscriptions.find_by(topic_id: params[:id])
 
     if subscription.destroy
       render_success(:ok, subscription, include: [:topics], meta: { message: "Subscription destroyed successfully..." })
