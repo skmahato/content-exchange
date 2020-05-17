@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
     resources :posts
     resources :topics
+    resources :subscriptions
   end
 end

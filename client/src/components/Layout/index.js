@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Header from './Header';
 import MainContent from './MainContent';
 import { requestTopics } from '../../actions/topics'
 
-const Layout = ({ dispatch }) => {
+const Layout = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(requestTopics())
   }, [dispatch])
@@ -18,4 +20,4 @@ const Layout = ({ dispatch }) => {
   )
 }
 
-export default connect()(Layout);
+export default Layout;

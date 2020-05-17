@@ -4,6 +4,7 @@ class Api::PostSerializer < ActiveModel::Serializer
   attributes :id, :context, :images
 
   has_many :topics, through: :post_topics
+  has_many :subscriptions
 
   def images
     return unless object.images.attachments

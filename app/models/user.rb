@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: VALID_EMAIL_REGEX }
 
   has_many :posts, dependent: :destroy
+  has_many :subscriptions
 end
