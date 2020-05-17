@@ -7,13 +7,13 @@ class CreateTopics < ActiveRecord::Migration[6.0]
     end
 
     create_table :posts do |t|
-      t.references :user
+      t.belongs_to :user
       t.string :context, null: false, default: ""
 
       t.timestamps
     end
 
-    create_table :posts_topics, id: false do |t|
+    create_table :post_topics do |t|
       t.belongs_to :post
       t.belongs_to :topic
     end

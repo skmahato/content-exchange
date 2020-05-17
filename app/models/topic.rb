@@ -1,5 +1,6 @@
 class Topic < ApplicationRecord
-  has_and_belongs_to_many :posts
+  has_many :post_topics
+  has_many :posts, through: :post_topics
 
   validates :title, presence: true, uniqueness: { case_sensitive: false }
 end

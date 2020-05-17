@@ -1,5 +1,5 @@
 class Api::TopicSerializer < ActiveModel::Serializer
   attributes :id, :title
 
-  has_and_belongs_to_many :posts
+  has_many :posts, through: :post_topics
 end

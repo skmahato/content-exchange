@@ -1,6 +1,6 @@
 class Api::PostSerializer < ActiveModel::Serializer
-  attributes :id, :contex
+  attributes :id, :context
 
-  has_and_belongs_to_many :topics
-  belongs_to :user
+  has_many :topics, through: :post_topics
+  has_many :images
 end
