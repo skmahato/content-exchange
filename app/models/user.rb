@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   VALID_EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i.freeze
 
   devise :database_authenticatable, :registerable,
