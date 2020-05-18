@@ -13,7 +13,6 @@ class Api::PostsController < Api::ApiController
   def create
     topics = Topic.where(id: params[:post][:topic_id])
     post = current_user.posts.new(post_params)
-    post.images.attach(params[:post][:images])
 
     if post.save
       topics.each { |t| t.posts << post }
