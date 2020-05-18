@@ -27,9 +27,10 @@ function SignIn({ dispatch, classes }) {
     e.preventDefault();
     const email = e.target.elements.email.value;
     const password = e.target.elements.password.value;
-    const confirmPassword = e.target.confirmPassword.value;
 
     if (open) {
+      const confirmPassword = e.target.confirmPassword.value;
+
       if (email && password && confirmPassword) {
         const params = { user: { email, password, password_confirmation: confirmPassword } };
         dispatch(registerUser(params))
