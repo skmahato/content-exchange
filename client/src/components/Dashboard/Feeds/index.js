@@ -35,11 +35,7 @@ export default ({ posts }) => {
       {posts.map(f =>
         <Card className={classes.root} key={f.id}>
           <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image={f.images[0]}
-              title="post"
-            />
+            <img src={f.images[0]}  alt="alt"/>
             <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
                 {f.context}

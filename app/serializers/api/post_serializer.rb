@@ -8,9 +8,7 @@ class Api::PostSerializer < ActiveModel::Serializer
   def images
     return unless object.images.attachments
     image_urls = object.images.map do |image|
-      ActiveStorage::Current.set(host: "https://localhost:3000") do
-        image.service_url
-      end
+      rails_blob_url(image)
     end
 
     image_urls
