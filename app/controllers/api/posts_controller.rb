@@ -1,7 +1,7 @@
 class Api::PostsController < Api::ApiController
 
   def index
-    posts = Post.all
+    posts = Post.joins(topics: { subscriptions: :user }).where('users.id = ?', current_user.id)
 
     if posts
       render_success(:ok, posts, include: [:topics])
