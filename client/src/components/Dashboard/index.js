@@ -6,10 +6,12 @@ import Form from './Form';
 import Feeds from './Feeds';
 import { requestPosts } from '../../actions/posts';
 import postSelector from '../../selectors/posts';
+import topicSelector from '../../selectors/topics';
 
 export default () => {
   const dispatch = useDispatch();
   const posts = useSelector(postSelector);
+  const topics = useSelector(topicSelector);
 
   useEffect(() => {
     dispatch(requestPosts());
@@ -18,11 +20,12 @@ export default () => {
   return (
     <Grid container spacing={2}>
       <Grid item md={8}>
-        <Feeds posts={posts} />
+        <Feeds posts={posts}
+        />
       </Grid>
 
       <Grid item md={4}>
-        <Form />
+        <Form topics={topics}/>
       </Grid>
     </Grid>
   )

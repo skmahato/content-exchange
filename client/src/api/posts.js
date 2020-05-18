@@ -6,5 +6,5 @@ export function requestPosts() {
 }
 
 export function createPost(data) {
-  return ajax('/api/posts', { method: 'POST', data });
+  return ajax('/api/posts', { method: 'POST', data, formData: true });
 }
