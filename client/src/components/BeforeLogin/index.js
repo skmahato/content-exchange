@@ -10,27 +10,42 @@ import {
   InputLabel,
   Paper,
   Typography,
+  Grid,
   withStyles
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import { requestLogin } from '../../actions/authentication';
+import { registerUser } from '../../actions/users';
 import styles from './styles';
 
 function SignIn({ dispatch, classes }) {
   const [error, setError] = useState(null);
+  const [open, setOpen] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
     const email = e.target.elements.email.value;
     const password = e.target.elements.password.value;
+    const confirmPassword = e.target.confirmPassword.value;
 
-    if (email && password) {
-      dispatch(requestLogin({ email, password })).then((response) => {
-        if (response.error) setError(response.payload.response.error);
-        return response;
-      });
-    } else setError({ message: 'email or password invalid' });
+    if (open) {
+      if (email && password && confirmPassword) {
+        const params = { user: { email, password, password_confirmation: confirmPassword } };
+        dispatch(registerUser(params))
+        .then((response) => {
+          if (response.error) setError(response.payload.response.error);
+          return response;
+        });
+      } else setError({ message: 'email or password invalid' });
+    } else {
+      if (email && password) {
+        dispatch(requestLogin({ email, password })).then((response) => {
+          if (response.error) setError(response.payload.response.error);
+          return response;
+        });
+      } else setError({ message: 'email or password invalid' });
+    }
   }
 
   return (
@@ -62,6 +77,13 @@ function SignIn({ dispatch, classes }) {
             <Input name="password" type="password" id="password" autoComplete="current-password" />
           </FormControl>
 
+          {open && (
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="confirmPassword">Password</InputLabel>
+              <Input name="confirmPassword" type="password" id="confirm-password"/>
+            </FormControl>
+          )}
+
           <Button
             fullWidth
             type="submit"
@@ -69,8 +91,19 @@ function SignIn({ dispatch, classes }) {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            {open ? "Sign Up" : "Login"}
           </Button>
+
+          <Grid container>
+            <Grid item xs>
+            </Grid>
+
+            <Grid item>
+              <Button onClick={() => setOpen(!open)}>
+                {open ? "Login" : "Sign Up"}
+              </Button>
+            </Grid>
+          </Grid>
         </form>
       </Paper>
     </main>

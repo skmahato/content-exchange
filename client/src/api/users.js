@@ -4,3 +4,7 @@ import ajax from './ajax';
 export function requestCurrentUser() {
   return ajax('/api/current_user');
 }
+
+export function registerUser(data) {
+  return ajax('/api/signup', { method: 'POST', data });
+}

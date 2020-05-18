@@ -9,7 +9,8 @@ class Api::UsersController < Api::ApiController
     user = User.new(user_params)
 
     if user.save
-      render_success(:created, user, meta: { message: I18n.t("devise.registrations.signed_up") })
+      jwt_token = Auth.issue(user: user.id)
+      render_success(:created, user, meta: { jwt_token: jwt_token, message: I18n.t("devise.sessions.signed_in") })
     else
       render_error(:unprocessable_entity, user.errors)
     end
