@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, Chip } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
@@ -20,11 +19,15 @@ const useStyles = makeStyles({
 
   },
   media: {
-    height: 140,
+    height: 500,
   },
   chip: {
     margin: 5,
   },
+  image: {
+    maxWidth: '100%',
+    height: 250,
+  }
 });
 
 export default ({ posts }) => {
@@ -35,7 +38,8 @@ export default ({ posts }) => {
       {posts.map(f =>
         <Card className={classes.root} key={f.id}>
           <CardActionArea>
-            <img src={f.images[0]}  alt="alt"/>
+            {f.images.map(image => <img key={f.image} src={image} alt="alt" className={classes.image} />)}
+
             <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
                 {f.context}
