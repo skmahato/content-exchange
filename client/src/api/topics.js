@@ -4,3 +4,7 @@ import ajax from './ajax';
 export function requestTopics() {
   return ajax('/api/topics');
 }
+
+export function createTopic(data) {
+  return ajax('/api/topics', { method: 'POST', data });
+}
