@@ -1,11 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 
+import { logout } from '../../../actions/authentication';
 import useStyles from './styles';
 
 const Header = ({ handleLogOut, currentUser }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -22,6 +25,10 @@ const Header = ({ handleLogOut, currentUser }) => {
               Topics
             </Typography>
           </Link>
+
+          <div className={classes.grow} />
+
+          <Button color="inherit" onClick={() => dispatch(logout())}>Logout</Button>
         </Toolbar>
       </AppBar>
     </>

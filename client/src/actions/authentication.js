@@ -1,12 +1,13 @@
 import { createAction } from 'redux-actions';
 import {
   REQUEST_LOGIN_SUCCESS,
-  REQUEST_LOGIN_FAILURE
+  REQUEST_LOGIN_FAILURE,
+  LOGOUT_USER,
 } from '../constants/actionTypes';
 
 import * as Auth from '../api/authentication';
 import { requestCurrentUser } from './users';
-import { setToken } from '../helpers/localStorageCache';
+import { setToken, removeToken } from '../helpers/localStorageCache';
 
 /* eslint-disable import/prefer-default-export */
 const loginUserSuccess = createAction(REQUEST_LOGIN_SUCCESS);
@@ -20,4 +21,13 @@ export function requestLogin(loginData) {
       return dispatch(requestCurrentUser());
     })
     .catch(error => dispatch(loginFailure(error)));
+}
+
+const logoutUser = createAction(LOGOUT_USER);
+
+export function logout() {
+  return (dispatch) => {
+    removeToken('jwtToken');
+    return dispatch(logoutUser());
+  };
 }

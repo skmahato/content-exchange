@@ -17,5 +17,6 @@ export default makeStyles(theme => ({
     color: '#ffffff',
     fontSize: 20,
     margin: 'auto 20px'
-  }
+  },
+  grow: { flexGrow: 1 },
 }));

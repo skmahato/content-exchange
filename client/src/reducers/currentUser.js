@@ -1,6 +1,7 @@
 import {
   REQUEST_CURRENT_USER_SUCCESS,
-  REQUEST_CURRENT_USER_FAILURE
+  REQUEST_CURRENT_USER_FAILURE,
+  LOGOUT_USER
 } from '../constants/actionTypes';
 
 const INITIAL_STATE = { id: null, error: null };
@@ -17,6 +18,11 @@ export default function currentUser(state = INITIAL_STATE, action) {
         ...state,
         id: null,
         error: action.payload.message
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        id: null
       };
     default:
       return state;
