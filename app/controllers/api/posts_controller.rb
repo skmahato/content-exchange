@@ -1,7 +1,7 @@
 class Api::PostsController < Api::ApiController
 
   def index
-    posts = Topic.find(params[:id]).posts
+    posts = Post.all
 
     if posts
       render_success(:ok, posts, include: [:topics])
@@ -12,7 +12,7 @@ class Api::PostsController < Api::ApiController
 
   def create
     topics = Topic.where(id: params[:post][:topic_id])
-    post = Post.new(post_params)
+    post = current_user.posts.new(post_params)
     post.images.attach(params[:post][:images])
 
     if post.save
@@ -26,6 +26,6 @@ class Api::PostsController < Api::ApiController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :context, images: [])
+    params.require(:post).permit(:user_id, :context, :topic_id, images: [])
   end
 end

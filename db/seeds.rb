@@ -5,6 +5,4 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user = User.create(email: "user@mail.com", password: "password", admin: true)
-Topic.create(title: "Cinema")
-Post.create(context: 'time waste', user: user)
+User.create(email: "user@mail.com", password: "password", admin: true)
