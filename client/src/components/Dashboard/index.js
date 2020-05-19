@@ -4,17 +4,19 @@ import { Grid } from '@material-ui/core';
 
 import Form from './Form';
 import Feeds from './Feeds';
+import { requestSubscriptions } from '../../actions/subscriptions'
 import { requestPosts } from '../../actions/posts';
 import postSelector from '../../selectors/posts';
-import topicSelector from '../../selectors/topics';
+import { subscribedTopics } from '../../selectors/topics';
 
 export default () => {
   const dispatch = useDispatch();
   const posts = useSelector(postSelector);
-  const topics = useSelector(topicSelector);
+  const topics = useSelector(subscribedTopics);
 
   useEffect(() => {
     dispatch(requestPosts());
+    dispatch(requestSubscriptions());
   }, [dispatch])
 
   return (

@@ -22,12 +22,23 @@ const Form = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <TextField value={title} onChange={(e) => setTitle(e.target.value)} label="Title" variant="outlined" />
-        <Button type="submit" color="primary" variant="contained">Add</Button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <TextField
+        required
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        label="Title"
+        variant="outlined"
+      />
+
+      <Button
+        type="submit"
+        color="primary"
+        variant="contained"
+      >
+        Add
+      </Button>
+    </form>
   )
 }
 
