@@ -4,6 +4,7 @@ import { Card, Chip } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import CommonCarousel from '../../Carousel';
 
 const useStyles = makeStyles({
   flex: {
@@ -38,7 +39,7 @@ export default ({ posts }) => {
       {posts.map(f =>
         <Card className={classes.root} key={f.id}>
           <CardActionArea>
-            {f.images.map((image, i) => <img key={`${f.image} _${i}`} src={image} alt="alt" className={classes.image} />)}
+            <CommonCarousel images={f.images} />
 
             <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
