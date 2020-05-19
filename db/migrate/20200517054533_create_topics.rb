@@ -7,15 +7,15 @@ class CreateTopics < ActiveRecord::Migration[6.0]
     end
 
     create_table :posts do |t|
-      t.belongs_to :user
+      t.references :user,     null: false, foreign_key: true
       t.string :context, null: false, default: ""
 
       t.timestamps
     end
 
     create_table :post_topics do |t|
-      t.belongs_to :post
-      t.belongs_to :topic
+      t.references :post,     null: false, foreign_key: true
+      t.references :topic,     null: false, foreign_key: true
     end
   end
 end

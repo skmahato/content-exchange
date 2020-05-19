@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(version: 2020_05_17_175704) do
   end
 
   create_table "post_topics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "topic_id"
+    t.bigint "post_id", null: false
+    t.bigint "topic_id", null: false
     t.index ["post_id"], name: "index_post_topics_on_post_id"
     t.index ["topic_id"], name: "index_post_topics_on_topic_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.string "context", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2020_05_17_175704) do
   end
 
   create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "topic_id"
+    t.bigint "user_id", null: false
+    t.bigint "topic_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["topic_id"], name: "index_subscriptions_on_topic_id"
@@ -77,4 +77,9 @@ ActiveRecord::Schema.define(version: 2020_05_17_175704) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "post_topics", "posts"
+  add_foreign_key "post_topics", "topics"
+  add_foreign_key "posts", "users"
+  add_foreign_key "subscriptions", "topics"
+  add_foreign_key "subscriptions", "users"
 end

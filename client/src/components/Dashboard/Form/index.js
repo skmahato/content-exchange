@@ -52,6 +52,7 @@ export default ({ topics }) => {
       />
 
       <Autocomplete
+        required
         multiple
         options={topics}
         disableCloseOnSelect
@@ -69,7 +70,7 @@ export default ({ topics }) => {
         )}
         style={{ margin: '10px auto' }}
         renderInput={params => (
-          <TextField {...params} variant="outlined" label="Tag" placeholder="Tag" />
+          <TextField {...params} variant="outlined" label="Tag" placeholder="Tag" required={topicId.length < 1} />
         )}
         onChange={onChange}
       />

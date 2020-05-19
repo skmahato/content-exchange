@@ -16,7 +16,7 @@ class Api::TopicsController < Api::ApiController
     if topic.save
       render_success(:created, topic, meta: { message: "Topic created successfully..." })
     else
-      render_error(:unprocessable_entity, post.errors)
+      render_error(:unprocessable_entity, topic.errors)
     end
   end
 
